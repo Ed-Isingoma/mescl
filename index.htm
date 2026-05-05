@@ -1,84 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MESCL</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>MESCL | Solar &amp; Energy-Saving Cooking in Uganda</title>
+    <meta name="description" content="Mayuge Energy Solar Cooking Limited (MESCL) — integrated solar cooking (ISC) appliances, energy-saving stoves, demos, and delivery across Mayuge and nearby districts in Eastern Uganda.">
     <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="scripts/includes.js" defer></script>
+    <script src="scr.js" defer></script>
 </head>
-<body>
-    <header>
-        <h1>Welcome to MESCL Store</h1>
-        <p>The future is bright, so why not use it to cook?</p>
-    </header>
-    <main>
-        <section id="about">
-            <h2>Our Products</h2>
-            <p>In case you dont know about it, you're not so late. There is a new generation of cooking equipment that are both innovative and environmental friendly. This is the Mayuge Energy Solar Cooking equipment and it works as good as any other kitchenware- with the added advantage of wowing yourself!</p>
-            <p>We deal in <b>Integrated Solar Cooking (ISC)</b> appliances ranging from <b>Parabolic Cookers, Hay Baskets, Solar Boxes, Cookits, Pans, Wapis</b> and <b>Energy Saving Stoves</b> -- And we deliver right where you want them. Below is a description of each, and they have a friendly price tag 😉️
-            </p>
-        </section>
-        <section id="products">
-            <div class="product">
-                <h3>Solar Cook Kit (Cookit)</h3>
-                <img src="on display.jpg">
-                <p>Used to cook and bake. Foldable, includes a pan, pan cover and Water Pasteurisation Indicator (WAPI)</p>
-                <button>Buy Now</button>
-            </div>
-            <div class="product">
-                <h3>Hay Basket (Food Warmer)</h3>
-                <img src="hay basket.jpg">
-                <p>This can completely boil food and also keep it warm for hours, saving energy</p>
-                <button>Buy Now</button>
-            </div>
-            <div class="product">
-                <h3>Parabolic Solar Cooker</h3>
-                <img src="on display.jpg">
-                <p>When you want to cook fast, this is the high-temperature solution for you. It can work with up to 800 degrees Celsius.</p>
-                <button>Buy Now</button>
-            </div>
-            <div class="product">
-                <h3>Solar Box Cooker</h3>
-                <img src="box cooker.png">
-                <p>For those who love cooking in the sun. This is a good starting experience</p>
-                <button>Buy Now</button>
-            </div>
-            <div class="product">
-                <h3>Energy Saving Stove</h3>
-                <img src="box cooker.png">
-                <p>Lorem Ipsum Dolor Sit Amet</p>
-                <button>Buy Now</button>
-            </div>
-            <div class="product">
-                <h3>Pans</h3>
-                <img src="on display.jpg">
-                <p>Lorem Ipsum Dolor Sit Amet</p>
-                <button>Buy Now</button>
-            </div>
-        </section>
-        <section id="how-it-works">
-            <h2>About Mayuge Energy Solar Cooking Limited (MESCL)</h2>
-            <p>We are the leading supplier of Solar Cooking equipment in Uganda, located in Buyembe, Mayuge district. We are a team of young enthusiasts who will stop at nothing to spread the word about how to embrace the direct energy of the sun to prepare the local meals we love.</p>
-            <p>We provide tutorials from district to district and on special request, including live demonstrations of the working of our products... plus sharing the happy meal at the end of the cooking demo 😄️</p>
-            <div class="imges">
-                <img src="about pic.jpg">
-                <img src="cook about demo.jpg">
-            </div>
-        </section>
-        <section id="testimonials">
-            <h2>Customer journey</h2>
-            <p>Below is sneek peek into our day to day activities.</p>
-            <div class="imges">
-                <img src="cook demo pic1.jpg">
-                <img src="cook demo show1.jpg">
-                <img src="cook demo.jpg">
-                <img src="cook demoo.jpg">
-            </div>
-        </section>
+<body class="bg-slate-50 text-slate-900">
+    <div data-include="partials/nav.html"></div>
+
+    <main id="home">
+        <div data-include="partials/hero.html"></div>
+        <div data-include="partials/products.html"></div>
+        <div data-include="partials/why-mescl.html"></div>
+        <div data-include="partials/impact.html"></div>
+        <div data-include="partials/journey.html"></div>
+        <div data-include="partials/gallery.html"></div>
+        <div data-include="partials/contact.html"></div>
     </main>
-    <footer>
-        <p>For Inquiries and Delivery, Contact us on: (+256) 775-865395 | (+256) 702-218782 | Location: Buyembe, Mayuge District</p>
-    </footer>
+
 </body>
 </html>

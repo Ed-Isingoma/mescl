@@ -1,0 +1,61 @@
+    <header class="sticky top-0 z-50 border-b-2 border-slate-200 bg-white/80 backdrop-blur">
+        <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+            <a href="#home" class="flex items-center gap-3">
+                <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-900 text-white font-extrabold">M</span>
+                <span class="leading-tight">
+                    <span class="block text-sm font-semibold text-slate-600">Mayuge Energy Solar Cooking</span>
+                    <span class="block text-lg font-extrabold tracking-tight">MESCL</span>
+                </span>
+            </a>
+
+            <nav class="hidden items-center gap-6 text-sm font-semibold md:flex">
+                <a class="hover:text-slate-900" href="#products">Products</a>
+                <a class="hover:text-slate-900" href="#why-mescl">Why MESCL</a>
+                <a class="hover:text-slate-900" href="#impact">Impact</a>
+                <a class="hover:text-slate-900" href="#journey">Journey</a>
+                <a class="hover:text-slate-900" href="#gallery">Gallery</a>
+                <a class="hover:text-slate-900" href="#contact">Contact</a>
+                <a data-wa="Hi MESCL, I’m interested in solar cooking appliances. Please share prices and delivery options."
+                   class="rounded-xl border-2 border-slate-900 bg-slate-900 px-4 py-2 text-white hover:opacity-90"
+                   href="#">
+                    WhatsApp
+                </a>
+            </nav>
+
+            <button id="nav-toggle"
+                    class="inline-flex items-center justify-center rounded-xl border-2 border-slate-200 bg-white p-2 md:hidden"
+                    aria-controls="mobile-nav"
+                    aria-expanded="false">
+                <span class="sr-only">Open menu</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
+                    <path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75Zm0 5.25A.75.75 0 0 1 3.75 11.25h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <div id="mobile-nav-backdrop" class="hidden fixed inset-0 z-40 bg-black/40"></div>
+    <aside id="mobile-nav" class="hidden fixed right-0 top-0 z-50 h-full w-80 max-w-[85vw] border-l-2 border-slate-200 bg-white p-6">
+        <div class="flex items-center justify-between">
+            <div class="text-base font-extrabold">Menu</div>
+            <button class="rounded-xl border-2 border-slate-200 bg-white p-2" aria-label="Close menu" onclick="document.getElementById('nav-toggle').click()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
+                    <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+        <nav class="mt-6 grid gap-3 text-sm font-semibold">
+            <a class="rounded-xl border-2 border-slate-200 px-4 py-3 hover:border-slate-900" href="#products">Products</a>
+            <a class="rounded-xl border-2 border-slate-200 px-4 py-3 hover:border-slate-900" href="#why-mescl">Why MESCL</a>
+            <a class="rounded-xl border-2 border-slate-200 px-4 py-3 hover:border-slate-900" href="#impact">Impact</a>
+            <a class="rounded-xl border-2 border-slate-200 px-4 py-3 hover:border-slate-900" href="#journey">Journey</a>
+            <a class="rounded-xl border-2 border-slate-200 px-4 py-3 hover:border-slate-900" href="#gallery">Gallery</a>
+            <a class="rounded-xl border-2 border-slate-200 px-4 py-3 hover:border-slate-900" href="#contact">Contact</a>
+            <a data-wa="Hi MESCL, I’m interested in solar cooking appliances. Please share prices and delivery options."
+               class="rounded-xl border-2 border-slate-900 bg-slate-900 px-4 py-3 text-center text-white hover:opacity-90"
+               href="#">
+                WhatsApp us
+            </a>
+        </nav>
+    </aside>
+
