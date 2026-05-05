@@ -1,5 +1,5 @@
 (() => {
-  const phoneIntl = "256775865395";
+  const phoneIntl = "256702218782";
   const callPhoneDisplay = "+256 775 865395";
 
   const encode = (text) => encodeURIComponent(text.trim());
