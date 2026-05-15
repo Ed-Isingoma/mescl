@@ -52,38 +52,71 @@
       el.setAttribute("rel", "noopener noreferrer");
     });
 
-    // Gallery filtering
-    const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
-    const galleryItems = Array.from(document.querySelectorAll("[data-category]"));
+    // Gallery carousel
+    const galleryTrack = document.getElementById("gallery-track");
+    const galleryPrev = document.getElementById("gallery-prev");
+    const galleryNext = document.getElementById("gallery-next");
+    const galleryMore = document.getElementById("gallery-more");
 
-  const setActiveFilterBtn = (activeBtn) => {
-    filterButtons.forEach((btn) => {
-      btn.classList.remove("bg-slate-900", "text-white", "border-slate-900");
-      btn.classList.add("bg-white", "text-slate-900", "border-slate-200");
-      btn.setAttribute("aria-pressed", btn === activeBtn ? "true" : "false");
-    });
-    activeBtn.classList.remove("bg-white", "text-slate-900", "border-slate-200");
-    activeBtn.classList.add("bg-slate-900", "text-white", "border-slate-900");
-  };
+    if (galleryTrack) {
+      const updateGalleryControls = () => {
+        const maxScrollLeft = Math.max(0, galleryTrack.scrollWidth - galleryTrack.clientWidth);
+        const atStart = galleryTrack.scrollLeft <= 4;
+        const atEnd = maxScrollLeft - galleryTrack.scrollLeft <= 4;
 
-  const applyFilter = (filter) => {
-    galleryItems.forEach((item) => {
-      const cats = (item.getAttribute("data-category") || "")
-        .split(" ")
-        .map((s) => s.trim())
-        .filter(Boolean);
-      const show = filter === "all" || cats.includes(filter);
-      item.classList.toggle("hidden", !show);
-    });
-  };
+        if (galleryPrev) galleryPrev.disabled = atStart;
+        if (galleryNext) galleryNext.disabled = atEnd;
+      };
 
-    filterButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const filter = btn.getAttribute("data-filter") || "all";
-        setActiveFilterBtn(btn);
-        applyFilter(filter);
+      const getGalleryStep = () => {
+        const firstCard = galleryTrack.querySelector("[data-gallery-card]:not(.hidden)");
+        if (!firstCard) return 0;
+        const trackStyles = window.getComputedStyle(galleryTrack);
+        const gap = parseFloat(trackStyles.columnGap || trackStyles.gap || "0");
+        return firstCard.getBoundingClientRect().width + gap;
+      };
+
+      const scrollGalleryByStep = (direction) => {
+        const step = getGalleryStep();
+        if (!step) return;
+        galleryTrack.scrollBy({ left: direction * step, behavior: "smooth" });
+      };
+
+      galleryPrev?.addEventListener("click", () => scrollGalleryByStep(-1));
+      galleryNext?.addEventListener("click", () => scrollGalleryByStep(1));
+
+      // Load more logic
+      galleryMore?.addEventListener("click", () => {
+        const hiddenCards = Array.from(galleryTrack.querySelectorAll("[data-gallery-card].hidden"));
+        const batchSize = 4;
+        const toShow = hiddenCards.slice(0, batchSize);
+        
+        // Grab the first card we're about to show so we can scroll to it
+        const firstNewCard = toShow[0];
+        
+        toShow.forEach(card => card.classList.remove("hidden"));
+        
+        if (hiddenCards.length <= batchSize) {
+          galleryMore.classList.add("hidden");
+        }
+        
+        updateGalleryControls();
+
+        // Smoothly scroll to the new content
+        if (firstNewCard) {
+          galleryTrack.scrollTo({
+            left: firstNewCard.offsetLeft - 16, // -16 for a little bit of padding
+            behavior: "smooth"
+          });
+        }
       });
-    });
+
+      galleryTrack.addEventListener("scroll", updateGalleryControls, { passive: true });
+      window.addEventListener("resize", updateGalleryControls);
+      
+      // Initial check
+      setTimeout(updateGalleryControls, 100);
+    }
 
     // Energy-saving stove size selector
     const stoveSizeButtons = Array.from(document.querySelectorAll("[data-stove-size]"));
