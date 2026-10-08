@@ -118,6 +118,76 @@
       setTimeout(updateGalleryControls, 100);
     }
 
+    // Project report dialog
+    const reportDialog = document.getElementById("project-report");
+    const reportOpeners = Array.from(document.querySelectorAll("[data-report-open]"));
+
+    if (reportDialog && reportOpeners.length) {
+      const reportScroller = reportDialog.querySelector(".report-scroll");
+      const reportChips = Array.from(reportDialog.querySelectorAll("[data-report-jump]"));
+      const reportSections = reportChips
+        .map((chip) => reportDialog.querySelector(`#${chip.getAttribute("data-report-jump")}`))
+        .filter(Boolean);
+
+      const syncReportChips = () => {
+        if (!reportScroller || !reportSections.length) return;
+        const scrollerTop = reportScroller.getBoundingClientRect().top;
+        const atEnd = reportScroller.scrollTop + reportScroller.clientHeight >= reportScroller.scrollHeight - 4;
+        let active = reportSections[0];
+        reportSections.forEach((section) => {
+          if (section.getBoundingClientRect().top - scrollerTop <= 16) active = section;
+        });
+        // Short final section: highlight it once the bottom of the report is reached.
+        if (atEnd) active = reportSections[reportSections.length - 1];
+        reportChips.forEach((chip) => {
+          const isActive = active && chip.getAttribute("data-report-jump") === active.id;
+          chip.setAttribute("data-active", isActive ? "true" : "false");
+        });
+      };
+
+      const openReport = () => {
+        if (reportDialog.open) return;
+        // Fall back to a non-modal open where showModal isn't supported.
+        if (typeof reportDialog.showModal === "function") reportDialog.showModal();
+        else reportDialog.setAttribute("open", "");
+
+        document.documentElement.classList.add("report-locked");
+        if (reportScroller) reportScroller.scrollTop = 0;
+        syncReportChips();
+      };
+
+      const closeReport = () => {
+        if (!reportDialog.open) return;
+        reportDialog.close();
+      };
+
+      reportOpeners.forEach((btn) => btn.addEventListener("click", openReport));
+
+      reportDialog.querySelectorAll("[data-report-close]").forEach((btn) => {
+        btn.addEventListener("click", closeReport);
+      });
+
+      // Backdrop clicks land on the dialog itself, never on the inner panel.
+      reportDialog.addEventListener("click", (event) => {
+        if (event.target === reportDialog) closeReport();
+      });
+
+      reportDialog.addEventListener("close", () => {
+        document.documentElement.classList.remove("report-locked");
+      });
+
+      reportChips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+          const target = reportDialog.querySelector(`#${chip.getAttribute("data-report-jump")}`);
+          if (!target || !reportScroller) return;
+          const offset = target.getBoundingClientRect().top - reportScroller.getBoundingClientRect().top;
+          reportScroller.scrollTo({ top: reportScroller.scrollTop + offset - 12, behavior: "smooth" });
+        });
+      });
+
+      reportScroller?.addEventListener("scroll", syncReportChips, { passive: true });
+    }
+
     // Energy-saving stove size selector
     const stoveSizeButtons = Array.from(document.querySelectorAll("[data-stove-size]"));
     const stoveCta = document.getElementById("stove-wa-cta");
